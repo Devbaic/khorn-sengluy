@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Portfolio Website V1",
+    "desc": "Personal Portfolio Website Version 1. Built using HTML, CSS, JavaScript. Responsive and Modern Design.",
+    "image": "luy",
+    "category": "basicweb",
+    "links": {
+      "view": "https://portfolio-ten-puce-89.vercel.app/?fbclid=IwdGRjcAOBDtFjbGNrA4EOx2V4dG4DYWVtAjExAHNydGMGYXBwX2lkDDM1MDY4NTUzMTcyOAABHhVfALldhNiYbfsOyjoUtv1Ns38KPQoiOVEw0HwZgR205LhtRPqujqB3hgQ__aem_V3u8qHFEsVQB6HKG3kfoZg",
+      "code": "https://github.com/Devbaic/Persional"
+    }
+  },
+  {
+    "name": "Qrcodeby3",
+    "desc": "Website Convert text to QR code Name:Admin | Pw:1234",
+    "image": "qr",
+    "category": "basicweb",
+    "links": {
+      "view": "https://devbaic.github.io/Qrcodeby3/",
+      "code": "https://github.com/Devbaic/Qrcodeby3"
+    }
+  },
+  {
+    "name": "NIKEMOD",
+    "desc": "Basic Card",
+    "image": "nike",
+    "category": "basicweb",
+    "links": {
+      "view": "https://devbaic.github.io/NIKEMOD/",
+      "code": "https://github.com/Devbaic/NIKEMOD"
+    }
+  },
+  {
+    "name": "Pos Caffe",
+    "desc": "Java Swing Project for Caffe Management System.",
+    "image": "pos",
+    "category": "programming",
+    "links": {
+      "view": "404.html",
+      "code": "https://github.com/Devbaic/Pos-Caffe"
+    }
+  },
+  {
+    "name": "Happy New Years Design",
+    "desc": "Use Illustrator to design Happy New Year Greeting Card.",
+    "image": "design",
+    "category": "design",
+    "links": {
+     "view": "404.html",
+      "code": "404.html"
+    }
+  },
+  {
+    "name": "Product Design",
+    "desc": "Use Illustrator to design.",
+    "image": "product",
+    "category": "design",
+    "links": {
+      "view": "404.html",
+      "code": "404.html"
+    }
+  }
+  
+]
