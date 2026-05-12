@@ -1,731 +1,622 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link id='favicon' rel="shortcut icon" href="./assets/images/logo.png" type="image/x-png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LuyDev Experience — Full-Stack Developer & Network Engineer Journey" />
+  <link id="favicon" rel="shortcut icon" href="/assets/images/logo.png" type="image/x-png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
+  <title>Experience | LuyDev Portfolio</title>
 
-    <title>Experience | Portfolio LuyDev</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap");
+
+    /* ======= VARIABLES ======= */
+    :root {
+      --bg: #070710;
+      --bg2: #0e0e1c;
+      --card: rgba(255,255,255,0.04);
+      --card-h: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.08);
+      --border-h: rgba(212,175,55,0.4);
+      --gold: #d4af37;
+      --gold-l: #f5d877;
+      --gold-d: rgba(212,175,55,0.12);
+      --txt: #f0ede6;
+      --txt2: rgba(240,237,230,0.55);
+      --txt3: rgba(240,237,230,0.32);
+      --accent: #c084fc;
+      --success: #34d399;
+      --nav-h: 70px;
+      --r: 16px;
+      --r2: 10px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.5);
+      --sgold: 0 0 30px rgba(212,175,55,0.15);
+      --ease: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="light"] {
+      --bg: #f8f6f0; --bg2: #eee9dd;
+      --card: rgba(255,255,255,0.75); --card-h: rgba(255,255,255,0.95);
+      --border: rgba(0,0,0,0.1); --border-h: rgba(160,120,32,0.45);
+      --gold: #9a7020; --gold-l: #c09030; --gold-d: rgba(160,120,32,0.1);
+      --txt: #1a1608; --txt2: rgba(26,22,8,0.6); --txt3: rgba(26,22,8,0.38);
+      --shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    /* ======= RESET ======= */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+      text-decoration: none; outline: none; border: none;
+      transition: background-color var(--ease), border-color var(--ease), color var(--ease);
+    }
+    html { font-size: 62.5%; scroll-behavior: smooth; overflow-x: hidden; }
+    html::-webkit-scrollbar { width: 5px; }
+    html::-webkit-scrollbar-track { background: var(--bg); }
+    html::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    ::selection { background: var(--gold); color: #000; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.5;
+    }
+
+    /* ======= NAVBAR ======= */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-h); display: flex; align-items: center;
+      justify-content: space-between; padding: 0 8%;
+      background: rgba(7,7,16,0.88); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] header { background: rgba(248,246,240,0.9); }
+    .logo {
+      font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+      color: var(--txt); letter-spacing: -0.03em;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .logo-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+      display: inline-block; animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0.6} }
+    .logo:hover { color: var(--gold); }
+    .navbar ul { list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+    .navbar ul li a {
+      font-size: 1.4rem; font-weight: 500; color: var(--txt2);
+      padding: 0.6rem 1.2rem; border-radius: 8px; position: relative;
+    }
+    .navbar ul li a::after {
+      content: ''; position: absolute; bottom: 4px; left: 50%;
+      transform: translateX(-50%); width: 0; height: 2px;
+      background: var(--gold); border-radius: 2px; transition: width var(--ease);
+    }
+    .navbar ul li a:hover::after, .navbar ul li a.active::after { width: 60%; }
+    .navbar ul li a:hover, .navbar ul li a.active { color: var(--txt); background: var(--card); }
+    .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--border);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: var(--txt2); transition: all var(--ease);
+    }
+    .theme-toggle:hover { background: var(--gold-d); border-color: var(--gold); color: var(--gold); transform: rotate(20deg); }
+    #menu {
+      font-size: 2.2rem; cursor: pointer; color: var(--txt); display: none;
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      align-items: center; justify-content: center;
+    }
+
+    /* ======= PAGE HERO ======= */
+    .page-hero {
+      min-height: 38vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 13rem 8% 5rem; position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: 0.35;
+    }
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.15;
+    }
+    .orb1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--gold), transparent 70%);
+      top: -200px; left: 50%; transform: translateX(-50%);
+      animation: oF 7s ease-in-out infinite;
+    }
+    .orb2 {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      bottom: -60px; right: 10%;
+      animation: oF2 9s ease-in-out infinite;
+    }
+    @keyframes oF { 0%,100%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(1.06)} }
+    @keyframes oF2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 1rem;
+      font-size: 1.2rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .section-label::before { content: ''; width: 30px; height: 2px; background: var(--gold); }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 800; letter-spacing: -0.04em;
+      color: var(--txt); line-height: 1.1;
+      position: relative; z-index: 1; margin-bottom: 1.5rem;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-l));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-quote {
+      font-size: 1.6rem; font-style: italic; color: var(--txt2);
+      max-width: 560px; line-height: 1.6;
+      position: relative; z-index: 1; text-transform: none;
+    }
+    .page-quote::before { content: '"'; font-size: 3rem; color: var(--gold); line-height: 0; vertical-align: -0.6rem; margin-right: 0.3rem; }
+    .page-quote::after  { content: '"'; font-size: 3rem; color: var(--gold); line-height: 0; vertical-align: -0.6rem; margin-left: 0.3rem; }
+
+    /* ======= EXPERIENCE SECTION ======= */
+    .exp-section { padding: 5rem 8% 8rem; }
+
+    /* Stats row */
+    .stats-row {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 6rem;
+    }
+    .stat-card {
+      flex: 1 1 160px; max-width: 200px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 2.5rem 2rem; text-align: center;
+      transition: all var(--ease);
+    }
+    .stat-card:hover {
+      border-color: var(--border-h); transform: translateY(-4px);
+      box-shadow: var(--sgold);
+    }
+    .stat-icon {
+      font-size: 2.4rem; color: var(--gold);
+      margin-bottom: 1rem; display: block;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-size: 3.5rem;
+      font-weight: 800; color: var(--gold); display: block; line-height: 1;
+    }
+    .stat-lbl { font-size: 1.2rem; color: var(--txt2); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.5rem; display: block; }
+
+    /* ======= TIMELINE ======= */
+    .timeline-wrap { max-width: 900px; margin: 0 auto; position: relative; }
+
+    /* Centre spine */
+    .timeline-wrap::before {
+      content: ''; position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+      transform: translateX(-50%);
+    }
+
+    /* Individual item */
+    .tl-item {
+      display: grid; grid-template-columns: 1fr 70px 1fr;
+      margin-bottom: 3.5rem; position: relative;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .tl-item.visible { opacity: 1; transform: translateY(0); }
+
+    /* Dot column */
+    .tl-dot-col {
+      display: flex; flex-direction: column; align-items: center; padding-top: 1.8rem;
+    }
+    .tl-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--gold);
+      box-shadow: 0 0 0 4px var(--gold-d);
+      flex-shrink: 0; z-index: 1;
+      transition: all var(--ease);
+    }
+    .tl-item:hover .tl-dot {
+      background: var(--gold);
+      box-shadow: 0 0 0 6px var(--gold-d), 0 0 20px rgba(212,175,55,0.5);
+      transform: scale(1.3);
+    }
+
+    /* Content box */
+    .tl-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 2.4rem 2.8rem;
+      position: relative; transition: all var(--ease);
+    }
+    .tl-item:hover .tl-box {
+      border-color: var(--border-h); background: var(--card-h);
+      box-shadow: var(--sgold);
+    }
+
+    /* Arrow connector */
+    .tl-box::before {
+      content: ''; position: absolute; top: 2.2rem;
+      border: 8px solid transparent;
+    }
+    /* right item: arrow points left from box */
+    .tl-item.right .tl-box::before {
+      right: 100%; border-right-color: var(--border);
+      margin-right: -1px;
+    }
+    .tl-item.right:hover .tl-box::before { border-right-color: var(--border-h); }
+    /* left item: arrow points right from box */
+    .tl-item.left .tl-box::before {
+      left: 100%; border-left-color: var(--border);
+      margin-left: -1px;
+    }
+    .tl-item.left:hover .tl-box::before { border-left-color: var(--border-h); }
+
+    /* Layout columns per side */
+    .tl-item.right .tl-empty   { grid-column: 1; }
+    .tl-item.right .tl-dot-col { grid-column: 2; }
+    .tl-item.right .tl-box     { grid-column: 3; }
+    .tl-item.left  .tl-box     { grid-column: 1; text-align: right; }
+    .tl-item.left  .tl-dot-col { grid-column: 2; }
+    .tl-item.left  .tl-empty   { grid-column: 3; }
+
+    /* Text inside box */
+    .tl-year {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.35rem 1rem; border-radius: 100px;
+      background: var(--gold-d); border: 1px solid rgba(212,175,55,0.25);
+      font-size: 1.2rem; font-weight: 600; color: var(--gold);
+      margin-bottom: 1rem; text-transform: none;
+    }
+    .tl-company {
+      font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 700;
+      color: var(--txt); margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .tl-role { font-size: 1.4rem; color: var(--gold); font-weight: 600; }
+    .tl-desc { font-size: 1.35rem; color: var(--txt2); margin-top: 0.8rem; line-height: 1.6; text-transform: none; }
+
+    .tl-item.left .tl-year { justify-content: flex-end; }
+    .tl-item.left .tl-desc { text-align: right; }
+
+    /* Category pill */
+    .tl-type {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--txt3); margin-top: 1rem;
+    }
+    .tl-type i { font-size: 1rem; }
+    .tl-item.left .tl-type { justify-content: flex-end; display: flex; }
+
+    /* ======= BACK BUTTON ======= */
+    .back-wrap { display: flex; justify-content: center; margin-top: 6rem; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 1.3rem 2.8rem; border-radius: 100px;
+      font-size: 1.5rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; background: transparent; color: var(--txt);
+      border: 1.5px solid var(--border); transition: all var(--ease);
+    }
+    .btn-back:hover { border-color: var(--gold); background: var(--gold-d); }
+    .btn-back:hover i { transform: translateX(-4px); }
+    .btn-back i { transition: transform var(--ease); }
+
+    /* ======= FOOTER ======= */
+    .footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 5rem 8% 3rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+    .footer-brand p { font-size: 1.4rem; color: var(--txt2); line-height: 1.7; text-transform: none; max-width: 280px; margin-top: 1.5rem; }
+    .footer-socials { display: flex; gap: 1rem; margin-top: 2rem; }
+    .footer-socials a {
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: var(--card); border: 1px solid var(--border);
+      font-size: 1.5rem; color: var(--txt2); transition: all var(--ease);
+    }
+    .footer-socials a:hover { background: var(--gold); border-color: var(--gold); color: #000; transform: translateY(-3px); }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--txt); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .footer-col a { display: block; font-size: 1.4rem; color: var(--txt2); padding: 0.4rem 0; transition: all var(--ease); text-transform: capitalize; }
+    .footer-col a:hover { color: var(--gold); padding-left: 6px; }
+    .footer-col p { font-size: 1.4rem; color: var(--txt2); padding: 0.4rem 0; display: flex; align-items: center; gap: 1rem; text-transform: none; }
+    .footer-col p i { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 3rem; text-align: center; font-size: 1.3rem; color: var(--txt3); }
+    .footer-bottom .heart { color: #ef4444; animation: pound 0.5s infinite alternate; display: inline-block; }
+    @keyframes pound { to { transform: scale(1.2); } }
+
+    /* ======= SCROLL TOP ======= */
+    #scroll-top {
+      position: fixed; bottom: 3rem; right: 3rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gold); color: #000; font-size: 1.8rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.4);
+      z-index: 999; opacity: 0; transform: translateY(20px);
+      pointer-events: none; transition: all var(--ease); text-decoration: none;
+    }
+    #scroll-top.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+    #scroll-top:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(212,175,55,0.6); }
+
+    /* ======= RESPONSIVE ======= */
+    @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) {
+      html { font-size: 58%; }
+      header { padding: 0 5%; }
+      .exp-section { padding: 4rem 5% 6rem; }
+      .page-hero { padding: 11rem 5% 4rem; }
+      .navbar {
+        position: fixed; top: var(--nav-h); right: -100%;
+        width: 280px; height: 100vh; background: var(--bg2);
+        border-left: 1px solid var(--border); padding: 3rem 2rem;
+        transition: right var(--ease); flex-direction: column;
+      }
+      .navbar.nav-toggle { right: 0; }
+      .navbar ul { flex-direction: column; align-items: flex-start; gap: 0.5rem; width: 100%; }
+      .navbar ul li { width: 100%; }
+      .navbar ul li a { display: block; padding: 1.2rem 1.5rem; font-size: 1.6rem; border-radius: var(--r2); }
+      #menu { display: flex; }
+
+      /* Mobile timeline: all items right-aligned (single column) */
+      .timeline-wrap::before { left: 18px; }
+      .tl-item { grid-template-columns: 44px 1fr; }
+      .tl-item.right .tl-empty, .tl-item.left .tl-empty { display: none; }
+      .tl-item.right .tl-dot-col, .tl-item.left .tl-dot-col { grid-column: 1; }
+      .tl-item.right .tl-box, .tl-item.left .tl-box { grid-column: 2; text-align: left; padding: 2rem; }
+      .tl-item.left .tl-box::before { left: auto; right: 100%; border-left-color: transparent; border-right-color: var(--border); }
+      .tl-item.left:hover .tl-box::before { border-right-color: var(--border-h); }
+      .tl-item.left .tl-year { justify-content: flex-start; }
+      .tl-item.left .tl-desc, .tl-item.left .tl-type { text-align: left; justify-content: flex-start; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stats-row { gap: 1.2rem; }
+    }
+    @media (max-width: 480px) { html { font-size: 55%; } .stat-card { flex: 1 1 130px; } }
+  </style>
 </head>
-<body oncontextmenu="return false">
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+<body>
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  outline: none; border: none;
-  text-transform:capitalize;
-  transition: all .2s linear;
-}
-html{
-  font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-body{
-  background: #f7f7f7;
-  font-family: 'Poppins', sans-serif;
-}
-
-*::selection{
-  background: #051077ff;
-  color: #fff;
-}
-
-html{
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-html::-webkit-scrollbar{
-  width: .8rem;
-}
-html::-webkit-scrollbar-track{
-  background: rgb(235, 202, 245);
-}
-html::-webkit-scrollbar-thumb{
-  background: #420177;
-}
-
-/* navbar starts */
-header{
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.7rem 10%;
-  height: 6.5rem;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(146,161,176,.3);
-}
-section{
-  min-height: 100vh;
-  padding: 2rem 9%;
-}
-.heading{
-  font-size: 3.5rem;
-  color: rgb(20, 20, 20);
-  font-weight: 800;
-  text-align: center;
-}
-.heading span{
-  color: rgb(115, 3, 167);
-}
-header .logo{
-  font-size: 1.9rem;
-  font-weight: 800;
-  text-decoration: none;
-  color: #0E2431;
-}
-header .logo i {
-  font-size: 2.2rem;
-}
-header .logo:hover {
-  color: #fc8c05;
-}
-header .navbar ul{
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-header .navbar li{
-  margin-left: 2.5rem;
-}
-header .navbar ul li a{
-  font-size: 1.57rem;
-  color: #0E2431;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.04rem;
-}
-header .navbar ul li a.active,
-header .navbar ul li a:hover{
-  color: #50589cff;
-  border-bottom: .2rem solid #3b438dff;
-  padding: .5rem 0;
-}
-/* navbar ends */
-
-/* hamburger icon starts*/
-#menu{
-  font-size: 3rem;
-  cursor: pointer;
-  color: rgb(24, 2, 63);
-  display: none;
-}
-@media(max-width:768px){
-  #menu{
-      display: block;
-  }
-  header .navbar{
-    position: fixed;
-    top: 6.5rem; right: -120%;
-    width: 75%;
-    height: 100%;
-    text-align: left;
-    align-items: flex-start;
-    background-color: #0e0f31;
-  }
-  header .navbar ul{
-    flex-flow: column;
-    padding: 1rem;
-  }
-  header .navbar ul li{
-    text-align: center;
-    width: 100%;
-    margin: 1rem 0;
-    border-radius: .5rem;
-    width: 26rem;
-  }
-  header .navbar ul li a{
-    display: block;
-    padding: 1rem;
-    text-align: left;
-    color: #fff;
-    font-size: 2rem;
-  }
-  header .navbar ul li a.active,
-  header .navbar ul li a:hover{
-    padding: 1rem;
-    color: #fff;
-    border-radius: .5rem;
-    border-bottom: .5rem solid #011aff;
-  }
-  .fa-times{
-    transform: rotate(180deg);
-  }
-  header .navbar.nav-toggle{
-    right: 0;
-  }
-}
-/* hamburger icon ends */
-
-/* experience section starts */
-.experience {
-  margin-top: 5rem;
-}
-.experience .quote {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.experience .timeline {
-  position: relative;
-  max-width: 1200px;
-  margin: 2rem auto;
-}
-.experience .timeline::after {
-  content: '';
-  position: absolute;
-  width: 6px;
-  background: #363588ff;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -3px;
-  z-index: -2;
-}
-.experience .container {
-  padding: 10px 40px;
-  position: relative;
-  background-color: inherit;
-  width: 50%;
-}
-/*circles on timeline*/
-.experience .container::after {    
-  content: "\f0b1";
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  right: -17px;
-  background-color: rgb(255, 255, 255);
-  border: 4px solid #f68c09;
-  top: 15px;
-  border-radius: 50%;
-  z-index: 100;
-  font-size: 1.89rem;
-  text-align: center;
-  font-weight: 600;
-  color:#02094b;
-  font-family: 'Font Awesome\ 5 Free';
-}
-.experience .left {
-  left: 0;
-}
-.experience .right {
-  left: 50%;
-}
-/* arrows pointing right */
-.experience .left::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  right: 30px;
-  border: medium solid #f68c09;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #f68c09;
-}
-/* arrows pointing left  */
-.experience .right::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  left: 30px;
-  border: medium solid #f68c09;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent #f68c09 transparent transparent;
-}
-.experience .right::after {
-  left: -16px;
-}
-.experience .content {
-  background-color: #f68c09;
-  position: relative;
-  border-radius: 6px;
-}
-.experience .content .tag{
-  font-size: 1.3rem;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
-}
-.experience .content .desc{
-  margin-left: 1.5rem;
-  padding-bottom: 1rem;
-}
-.experience .content .desc h3{
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.experience .content .desc p{
-  font-size: 1.2rem;
-}
-/* view all button */
-.morebtn{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-.morebtn .btn {
-  position: relative;
-  line-height: 0;
-  padding: 1.6rem 3rem;
-  border-radius: .5em;
-  transition: 0.5s;
-  color: #fff;
-  background: #2506ad;
-  box-shadow: 0px 5px 10px rgba(48, 68, 247, .6);
-  text-align: center;
-}
-.morebtn .btn span {
-  font-weight: 600;
-  font-size: 1.7rem;
-  font-family: 'Nunito', sans-serif;
-}
-.morebtn .btn i {
-  margin-right: 0.5rem;
-  font-size: 1.5rem;
-  transition: 0.3s;
-}
-.morebtn .btn:hover{
-  background: #1a047e;
-}
-.morebtn .btn:hover i {
-  transform: translateX(-8px);
-}
-
-/* Media queries - Responsive timeline on screens less than 600px wide */
-@media screen and (max-width: 600px) {
-  .experience .timeline::after {
-  left: 31px;
-  }
-  .experience .container {
-  width: 100%;
-  padding-left: 70px;
-  padding-right: 25px;
-  }
-  .experience .container::before {
-  left: 60px;
-  border: medium solid #f68c09;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent #f68c09 transparent transparent;
-  }
-  .experience .left::after {
-    left: 15px;
-  }
-  .experience .right::after {
-    left: 15px;
-  }
-  .experience .right {
-  left: 0%;
-  }
-  .experience .container::after {
-    font-size: 2.2rem;;
-  }
-}
-/* experience media queries ends */
-/* experience section ends */
-
-
-/* footer section starts */
-.footer{
-  min-height: auto;
-  padding-top: 0;
-  background: rgb(0, 1, 43);
-}
-.footer .box-container{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.footer .box-container .box{
-  flex: 1 1 25rem;
-  margin: 2rem;
-}
-.footer .box-container .box h3{
-  font-size: 2.5rem;
-  color: #fff;
-  padding-bottom: 1rem;
-  font-weight: normal;
-}
-.footer .box-container .box p{
-  font-size: 1.5rem;
-  color: #ccc;
-  padding: .7rem 0;
-  text-transform: none;
-}
-.footer .box-container .box p i{
-  padding-right: 1rem;
-  color: #ffae00;
-}
-.footer .box-container .box a{
-  font-size: 1.5rem;
-  color: rgb(238, 238, 238);
-  padding: .3rem 0;
-  display: block;
-}
-.footer .box-container .box a:hover{
-  color: #ffae00;
-}
-.footer .box-container .box .share{
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem 0;
-}
-.footer .box-container .box .share a{
-  height: 4rem;
-  width: 4rem;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 5rem;
-  font-size: 1.7rem;
-  margin-right: 1rem;
-  transition: .2s;
-  background: rgb(230, 230, 230);
-  color: #02094b;
-  border: none;
-}
-.footer .box-container .box .share a:hover{
-  background: transparent;
-  transform: scale(0.98);
-  border: .1rem solid rgb(180, 178, 178);
-  color: #ffae00;
-}
-.footer .credit{
-  padding: 1rem 0 0 0;
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: 'Nunito',sans-serif;
-  font-weight: 600;
-  color: #fff;
-  border-top: .1rem solid #fff3;
-}
-.footer .credit a{
-  color: #ffae00;
-}
-.footer .fa{
-    color: #E90606;
-    margin: 0 .3rem;
-    font-size: 1.5rem;
-    animation: pound .35s infinite alternate;
-}
-@-webkit-keyframes pound{
-  to{
-    transform: scale(1.1);
-  }
-}
-@keyframes pound{
-  to{
-    transform: scale(1.1);
-}
-}
-@media(max-width:450px){
-  .footer .box-container .box{
-    margin: 2rem;
-  }
-  .footer .box-container .box p{
-    padding: 0.7rem;
-  }
-  .footer .box-container .box .share a{
-    padding: 1.1rem;
-  }
-}
-/* footer section ends */
-
-/* common media queries starts*/
-@media(max-width:450px){
-  html{
-    font-size: 55%;
-  }
-  body{
-    padding-right: 0;
-  }
-  section{
-    padding: 2rem;
-  }
-}
-/* common media queries ends*/
-
-
-/* scroll top starts */
-#scroll-top{
-  position: fixed;
-  top: -140%;
-  right: 2rem;
-  padding: 1rem 1.5rem;
-  font-size: 2rem;
-  background: #ffae00;
-  color: rgb(13, 0, 44);
-  border-radius: 5rem;
-  transition: 1s linear;
-  z-index: 1000;
-}
-#scroll-top.active{
-  top: calc(100% - 12rem);
-}
-/* scroll top ends */
-</style>
-<!-- navbar starts -->
-<header>
-        <a href="/" class="logo"><i class="fas fa-user-secret"></i> LuyDev</a>
-
-        <div id="menu" class="fas fa-bars"></div>
-        <nav class="navbar">
-            <ul>
-            <li><a href="/#home">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#skills">Skills</a></li>
-            <li><a href="/#education">Education</a></li>
-            <li><a href="/#work">Work</a></li>
-            <li><a class="active" href="/#experience">Experience</a></li>
-            <li><a href="/#contact">Contact</a></li>
-            </ul>
-        </nav>
+<!-- ===== NAVBAR ===== -->
+<header id="header">
+  <a href="/" class="logo">LuyDev<span class="logo-dot"></span></a>
+  <nav class="navbar" id="navbar">
+    <ul>
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#skills">Skills</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#experience" class="active">Experience</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <div id="menu" class="fas fa-bars"></div>
+  </div>
 </header>
-<!-- navbar ends -->
 
-<!-- experience section starts -->
-<section class="experience" id="experience">
-
-  <h2 class="heading"><i class="fas fa-briefcase"></i> Experience</h2>
-  <div class="quote">
-      <span>every experience in your life is being orchestrated to teach you something you need to know to move forward.</span>
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
   </div>
-
-  <div class="timeline">
-    <div class="container right">
-        <div class="content">
-          <div class="tag">
-            <h2>Ministry of Labour and Vocational Training</h2>
-          </div>
-          <div class="desc">
-              <h3>Back-end Developer</h3>
-              <p>2025-Present</p>
-          </div>
-        </div>
-      </div>
-
-    <div class="container left">
-      <div class="content">
-        <div class="tag">
-          <h2>Networking</h2>
-        </div>
-        <div class="desc">
-            <h3>Network Engineer</h3>
-            <p>2025 July- August 2026</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="container right">
-      <div class="content">
-        <div class="tag">
-          <h2>The group of participants, teachers and
-          students present at INDUSTRIAL TECHNICAL
-          INSTTTUTE
-          </h2>
-        </div>
-        <div class="desc">
-            <h3>Work at School</h3>
-            <p>2024-2025</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="container left">
-      <div class="content">
-        <div class="tag">
-          <h2>DOCUMENTATION CENTER OF CAMBODIA</h2>
-        </div>
-        <div class="desc">
-            <h3>History about Cambodia</h3>
-            <p>2022-2023</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="container right">
-      <div class="content">
-        <div class="tag">
-          <h2>Cambodian Red Cross</h2>
-        </div>
-        <div class="desc">
-            <h3>About Education</h3>
-            <p>2022-2023</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="container left">
-        <div class="content">
-          <div class="tag">
-            <h2>Union of Youth Federations of Cambodia</h2>
-          </div>
-          <div class="desc">
-              <h3>Union of Youth Federations of Cambodia</h3>
-              <p>2022-2023</p>
-          </div>
-        </div>
-      </div>
-
-  </div>
-
-  <div class="morebtn">
-    <a href="/#experience" class="btn">
-        <i class="fas fa-arrow-left"></i>
-        <span>Back to Home</span>
-  </a>
-  </div>
-
+  <div class="section-label">My Journey</div>
+  <h1 class="page-title">Work <span>Experience</span></h1>
+  <p class="page-quote">Every experience is orchestrated to teach you something you need to move forward.</p>
 </div>
-</section>
-<!-- experience section ends -->
 
-<!-- footer section starts -->
-<section class="footer">
+<!-- ===== EXPERIENCE ===== -->
+<section class="exp-section" id="experience">
 
-  <div class="box-container">
-
-      <div class="box">
-          <h3>LuyDev's Portfolio</h3>
-          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br/> <br/> Keep Rising 🚀. Connect with me over live chat!</p>
-      </div>
-
-      <div class="box">
-          <h3>quick links</h3>
-          <a href="/#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-          <a href="/#about"><i class="fas fa-chevron-circle-right"></i> about</a>
-          <a href="/#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
-          <a href="/#education"><i class="fas fa-chevron-circle-right"></i> education</a>
-          <a href="/#work"><i class="fas fa-chevron-circle-right"></i> work</a>
-          <a href="/#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
-      </div>
-
-      <div class="box">
-          <h3>contact info</h3>
-          <p> <i class="fas fa-phone"></i>+855 16-649-597</p>
-          <p> <i class="fas fa-envelope"></i>maracleboy@gmail.com</p>
-          <p> <i class="fas fa-map-marked-alt"></i>Touk Tla, Cambodia-186</p>
-          <div class="share">
-
-           
-            <a href="https://github.com/Devbaic" class="fab fa-github" target="_blank"></a>
-            <a href="https://t.me/TheMiracle_man" class="fab fa-telegram-plane" target="_blank"></a>
-            <a href="https://www.facebook.com/share/1CxemmwjWY/" class="fab fa-facebook-f" target="_blank"></a>
-          </div>
-      </div>
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <i class="fas fa-briefcase stat-icon"></i>
+      <span class="stat-num">6</span>
+      <span class="stat-lbl">Experiences</span>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-code stat-icon"></i>
+      <span class="stat-num">2</span>
+      <span class="stat-lbl">Tech Roles</span>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-hands-helping stat-icon"></i>
+      <span class="stat-num">4</span>
+      <span class="stat-lbl">Volunteer Work</span>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-calendar-check stat-icon"></i>
+      <span class="stat-num">3+</span>
+      <span class="stat-lbl">Years Active</span>
+    </div>
   </div>
 
-  <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="https://www.linkedin.com/in/jigar-sable"> LuyDev</a></h1>
+  <!-- Timeline -->
+  <div class="timeline-wrap">
+
+    <!-- 1 -->
+    <div class="tl-item right">
+      <div class="tl-empty"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> 2025 – Present</span>
+        <h3 class="tl-company">Ministry of Labour & Vocational Training</h3>
+        <div class="tl-role"><i class="fas fa-server"></i> Back-end Developer</div>
+        <p class="tl-desc">Building and maintaining server-side systems using Laravel, developing internal tools and APIs for government digital services.</p>
+        <div class="tl-type"><i class="fas fa-circle" style="color:var(--success)"></i> Current Position</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="tl-item left">
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> July 2025 – Aug 2026</span>
+        <h3 class="tl-company">Networking Division</h3>
+        <div class="tl-role"><i class="fas fa-network-wired"></i> Network Engineer</div>
+        <p class="tl-desc">Designing and managing network infrastructure, configuring routers, switches, and ensuring system reliability and security.</p>
+        <div class="tl-type"><i class="fas fa-circle" style="color:var(--success)"></i> Current Position</div>
+      </div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="tl-item right">
+      <div class="tl-empty"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> 2024 – 2025</span>
+        <h3 class="tl-company">Industrial Technical Institute (ITI)</h3>
+        <div class="tl-role"><i class="fas fa-chalkboard-teacher"></i> Student Instructor & Project Lead</div>
+        <p class="tl-desc">Led group projects, collaborated with teachers and peers on web design and programming initiatives at ITI.</p>
+        <div class="tl-type"><i class="fas fa-graduation-cap"></i> Academic</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="tl-item left">
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> 2022 – 2023</span>
+        <h3 class="tl-company">Documentation Center of Cambodia</h3>
+        <div class="tl-role"><i class="fas fa-book-open"></i> Historical Research & Education</div>
+        <p class="tl-desc">Contributed to educational programs and historical documentation efforts to preserve Cambodia's cultural heritage.</p>
+        <div class="tl-type"><i class="fas fa-heart"></i> Volunteer</div>
+      </div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+    <!-- 5 -->
+    <div class="tl-item right">
+      <div class="tl-empty"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> 2022 – 2023</span>
+        <h3 class="tl-company">Cambodian Red Cross</h3>
+        <div class="tl-role"><i class="fas fa-hands-helping"></i> Education Volunteer</div>
+        <p class="tl-desc">Participated in humanitarian education campaigns and community outreach programs with the Cambodian Red Cross.</p>
+        <div class="tl-type"><i class="fas fa-heart"></i> Volunteer</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="tl-item left">
+      <div class="tl-box">
+        <span class="tl-year"><i class="fas fa-calendar-alt"></i> 2022 – 2023</span>
+        <h3 class="tl-company">Union of Youth Federations of Cambodia</h3>
+        <div class="tl-role"><i class="fas fa-users"></i> Youth Federation Member</div>
+        <p class="tl-desc">Engaged in youth development activities, leadership programs, and community service initiatives across Cambodia.</p>
+        <div class="tl-type"><i class="fas fa-heart"></i> Volunteer</div>
+      </div>
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+  </div><!-- /timeline-wrap -->
+
+  <!-- Back button -->
+  <div class="back-wrap">
+    <a href="/#experience" class="btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
+  </div>
 
 </section>
-<!-- footer section ends -->
 
-<!-- scroll top btn -->
-<a href="#experience" class="fas fa-angle-up" id="scroll-top"></a>
-<!-- scroll back to top -->
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo">LuyDev<span class="logo-dot"></span></a>
+      <p>Full-Stack Developer & Network Engineer crafting exceptional digital experiences from Cambodia. Keep Rising 🚀</p>
+      <div class="footer-socials">
+        <a href="https://github.com/Devbaic" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.facebook.com/share/1CxemmwjWY/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://t.me/TheMiracle_man" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://www.instagram.com/marraluy" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="/#home">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#education">Education</a>
+      <a href="/#work">Work</a>
+      <a href="/#experience">Experience</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><i class="fas fa-envelope"></i> maracleboy@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Touk Tla, Phnom Penh</p>
+      <p><i class="fas fa-phone"></i> +855 16-649-597</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Designed with <span class="heart">♥</span> by <strong>SengLuy (LuyDev)</strong> &nbsp;·&nbsp; © 2026 All rights reserved.
+  </div>
+</footer>
 
+<a href="#" id="scroll-top" aria-label="Back to top"><i class="fas fa-angle-up"></i></a>
 
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
-<!-- jquery cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- scroll reveal anim -->
-<script src="https://unpkg.com/scrollreveal"></script>
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
-
+<!-- ===== SCRIPTS ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 <script>
-  $(document).ready(function(){
-
-    $('#menu').click(function(){
-        $(this).toggleClass('fa-times');
-        $('.navbar').toggleClass('nav-toggle');
-    });
-
-    $(window).on('scroll load',function(){
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-
-        if(window.scrollY>60){
-            document.querySelector('#scroll-top').classList.add('active');
-        }else{
-            document.querySelector('#scroll-top').classList.remove('active');
-        }
-    });
+// Theme
+const html = document.documentElement;
+let isDark = true;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  isDark = !isDark;
+  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeIcon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
 });
 
-/* ===== SCROLL REVEAL ANIMATION ===== */
-const srtop = ScrollReveal({
-    origin: 'top',
-    distance: '80px',
-    duration: 1000,
-    reset: true
+// Navbar
+$('#menu').click(function () {
+  $(this).toggleClass('fa-times');
+  $('#navbar').toggleClass('nav-toggle');
+});
+$(window).on('scroll load', function () {
+  $('#menu').removeClass('fa-times');
+  $('#navbar').removeClass('nav-toggle');
+  document.getElementById('scroll-top').classList.toggle('active', window.scrollY > 60);
 });
 
-/* SCROLL EXPERIENCE */
-srtop.reveal('.experience .timeline',{delay: 400});
-srtop.reveal('.experience .timeline .container',{interval: 400}); 
+// Scroll reveal for timeline items
+const items = document.querySelectorAll('.tl-item');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 120);
+    }
+  });
+}, { threshold: 0.15 });
+items.forEach(el => obs.observe(el));
 
+// Visibility
+document.addEventListener('visibilitychange', () => {
+  document.title = document.visibilityState === 'visible'
+    ? 'Experience | LuyDev Portfolio'
+    : '👋 Come Back!';
+});
 
-// Start of Tawk.to Live Chat
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/60df10bf7f4b000ac03ab6a8/1f9jlirg6';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-// End of Tawk.to Live Chat
-
-
-// disable developer mode
+// Dev tools block
 document.onkeydown = function(e) {
-  if(e.keyCode == 123) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-     return false;
-  }
-}
-
-document.addEventListener('visibilitychange',
-function(){
-    if(document.visibilityState === "visible"){
-        document.title = "Experience | Portfolio LuyDev";
-        $("#favicon").attr("href","/assets/images/logo.png");
-    }
-    else {
-        document.title = "Come Back To Portfolio";
-        $("#favicon").attr("href","/assets/images/logo.png");
-    }
-});
+  if (e.keyCode === 123) return false;
+  if (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(String.fromCharCode(e.keyCode))) return false;
+  if (e.ctrlKey && e.keyCode === 85) return false;
+};
 </script>
-
 </body>
 </html>
